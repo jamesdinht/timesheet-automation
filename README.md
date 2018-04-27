@@ -4,6 +4,7 @@ Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving 
 # Requirements
 - Reasonable Internet connection (The automated tests waits up to 5 seconds for a page to load, before aborting)
     - The timeout time can be changed by changing `timeoutTime` in `conf.js`
+- [Node.js](https://nodejs.org/en/)
 - [Protractor](http://www.protractortest.org/#/)
 - [Google Chrome](https://www.google.com/chrome/) (currently, the tests run only on Chrome)
 
@@ -14,15 +15,12 @@ Clone this repository
 
 Setup [protractor](http://www.protractortest.org/#/) on your machine by following the instructions on their website
 
-- `npm install -g protractor`
-- `webdriver-manager update`
-
 Run the script
 - Navigate to the directory
     - `cd timesheet-automation`
 - Start the selenium server
     - `webdriver-manager start`
-- Run the script (don't forget to set your username and password)
+- Run the script in a separate window (don't forget to set your username and password)
     - `protractor conf.js --params.login.email=test@example.com -- params.login.password='password'`
 - Alternatively, change the `params.email` and `params.password` in `conf.js` to use your email and password and run:
     - `protractor conf.js`
