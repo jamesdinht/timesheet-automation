@@ -10,8 +10,12 @@ describe('Timesheet Automation', function() {
         var usernameField = element(by.id('j_id0:j_id6:username'));
         var passwordField = element(by.id('j_id0:j_id6:password'));
         
-        usernameField.sendKeys(browser.params.login.email);
-        passwordField.sendKeys(browser.params.login.password);
+        usernameField.clear().then(function(){
+            sendKeys(browser.params.login.email);
+        });
+        passwordField.clear().then(function(){
+            sendKeys(browser.params.login.password);
+        });
         element(by.name('j_id0:j_id6:j_id14')).click();
 
         expect(browser.getTitle()).toEqual('Revature Timesheet Portal');
