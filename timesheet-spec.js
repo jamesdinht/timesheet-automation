@@ -1,38 +1,40 @@
 describe('Timesheet Automation', function() {
     it('should fill out timesheet', function() {
         browser.waitForAngularEnabled(false);
-        browser.get('https://mv.force.com/revature/reLogin');
-
-        var logoSource = element(by.css('.imageCenter')).getAttribute('src');
-        expect(logoSource).toEqual('https://mv.force.com/revature/resource/1479749399000/RevatureLogo');
+        browser.get('https://rev2.force.com/revature/s/login/?startURL=%2Frevature%2Fs%2F&ec=302');
+        var until = protractor.ExpectedConditions;
 
         // Login
-        var usernameField = element(by.id('j_id0:j_id6:username'));
-        var passwordField = element(by.id('j_id0:j_id6:password'));
-        
-        usernameField.clear().then(function(){
-            sendKeys(browser.params.login.email);
-        });
-        passwordField.clear().then(function(){
-            sendKeys(browser.params.login.password);
-        });
-        element(by.name('j_id0:j_id6:j_id14')).click();
+        var usernameField = element(by.id('51:2;a'));
+        browser.wait(until.presenceOf(usernameField), browser.timeoutTime, 'Field taking too long to load.');
 
-        expect(browser.getTitle()).toEqual('Revature Timesheet Portal');
+        var passwordField = element(by.id('63:2;a'));
+        
+        usernameField.clear().then(function() {
+            usernameField.sendKeys(browser.params.login.email);
+        });
+        passwordField.clear().then(function() {
+            passwordField.sendKeys(browser.params.login.password);
+        });
+        element(by.css('.loginButton')).click();
+
+        expect(browser.getTitle()).toEqual('Login');
 
         // Open current timesheet and fill it out
-        var openTimesheetBtn = element(by.name('j_id0:j_id10:j_id30:j_id34:j_id35:j_id36'));
+        var openTimesheetBtn = element(by.css('button[title="Open Current Timesheet"]'));
         var until = protractor.ExpectedConditions;
         browser.wait(until.presenceOf(openTimesheetBtn), browser.timeoutTime, 'Button taking too long to load');
         openTimesheetBtn.click();
 
+        expect(browser.getTitle()).toEqual('Timesheet');
+
         // Fill in 8 hours for each day
         var untilField = protractor.ExpectedConditions;
-        var mondayHoursField = element(by.id('pageID:formID:pBlockID:pbTableID:1:j_id98:0:entryHrsID'));
-        var tuesdayHoursField = element(by.id('pageID:formID:pBlockID:pbTableID:2:j_id98:0:entryHrsID'));
-        var wednesdayHoursField = element(by.id('pageID:formID:pBlockID:pbTableID:3:j_id98:0:entryHrsID'));
-        var thursdayHoursField = element(by.id('pageID:formID:pBlockID:pbTableID:4:j_id98:0:entryHrsID'));
-        var fridayHoursField = element(by.id('pageID:formID:pBlockID:pbTableID:5:j_id98:0:entryHrsID'));
+        var mondayHoursField = element(by.id('66:230;a'));
+        var tuesdayHoursField = element(by.id('78:230;a'));
+        var wednesdayHoursField = element(by.id('90:230;a'));
+        var thursdayHoursField = element(by.id('102:230;a'));
+        var fridayHoursField = element(by.id('114:230;a'));
         browser.wait(until.presenceOf(mondayHoursField), browser.timeoutTime, 'Field taking too long to load.')
 
         mondayHoursField.clear().then(function() {
@@ -51,13 +53,11 @@ describe('Timesheet Automation', function() {
             fridayHoursField.sendKeys('8.00');
         });
 
-        element(by.name('pageID:formID:pBlockID:j_id48:bottom:j_id49')).click();
-
-        var saveButton = element(by.id('saveButtonID'));
+        var saveButton = element(by.buttonText('Save'));
         browser.wait(until.presenceOf(saveButton), browser.timeoutTime, 'Button taking too long to load.');
-        element(by.id('saveButtonID')).click();
+        saveButton.click();
 
-        var timesheetHours = element(by.css('.timeSheetTotalCls'));
+        var timesheetHours = element.all(by.css('.cTimesheetTotalHour')).last();
         browser.wait(until.presenceOf(timesheetHours), browser.timeoutTime, 'Span taking too long to load');
         expect(timesheetHours.getText()).toEqual('40.00');
     });
