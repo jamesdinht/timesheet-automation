@@ -8,6 +8,7 @@ Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving 
   - The timeout time can be changed by setting a different value for `timeoutTime` in `conf.js`
 - [Node.js](https://nodejs.org/en/)
 - [Protractor](http://www.protractortest.org/#/)
+- [Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) (for running Selenium)
 - [Google Chrome](https://www.google.com/chrome/) (currently, the tests run only on Chrome)
 
 # To Use
@@ -16,7 +17,7 @@ Clone this repository
 
 `git clone https://github.com/jamesdinht/timesheet-automation.git`
 
-Setup [protractor](http://www.protractortest.org/#/) on your machine by following the instructions on their website
+Setup protractor on your machine by following the instructions on their website [here](https://www.protractortest.org/#/tutorial)
 
 Run the script
 
