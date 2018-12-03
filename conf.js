@@ -1,11 +1,10 @@
 exports.config = {
     params: {
         login: {
-            email: 'SECRET',
-            password: 'SECRET'
+            username: 'ENTER USERNAME HERE',
+            password: 'ENTER PASSWORD HERE'
         }
     },
     timeoutTime: 5000,
-    seleniumAddress: 'http://localhost:4444/wd/hub',
     specs: ['timesheet-spec.js']
 }

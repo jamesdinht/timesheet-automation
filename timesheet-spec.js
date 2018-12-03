@@ -11,7 +11,7 @@ describe('Timesheet Automation', function() {
         var passwordField = element(by.id('63:2;a'));
         
         usernameField.clear().then(function() {
-            usernameField.sendKeys(browser.params.login.email);
+            usernameField.sendKeys(browser.params.login.username);
         });
         passwordField.clear().then(function() {
             passwordField.sendKeys(browser.params.login.password);
@@ -29,7 +29,6 @@ describe('Timesheet Automation', function() {
         expect(browser.getTitle()).toEqual('Timesheet');
 
         // Fill in 8 hours for each day
-        var untilField = protractor.ExpectedConditions;
         var mondayHoursField = element(by.id('66:230;a'));
         var tuesdayHoursField = element(by.id('78:230;a'));
         var wednesdayHoursField = element(by.id('90:230;a'));
@@ -54,11 +53,12 @@ describe('Timesheet Automation', function() {
         });
 
         var saveButton = element(by.buttonText('Save'));
-        browser.wait(until.presenceOf(saveButton), browser.timeoutTime, 'Button taking too long to load.');
-        saveButton.click();
+        browser.wait(until.presenceOf(saveButton), browser.timeoutTime, 'Button taking too long to load.')
+            .then(() => {
+                saveButton.click();
+            });
 
         var timesheetHours = element.all(by.css('.cTimesheetTotalHour')).last();
-        browser.wait(until.presenceOf(timesheetHours), browser.timeoutTime, 'Span taking too long to load');
         expect(timesheetHours.getText()).toEqual('40.00');
     });
 });
