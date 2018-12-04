@@ -15,15 +15,12 @@ describe('Timesheet Automation', () => {
                 usernameField.sendKeys(config.params.login.username);
             });
         });
+
         const passwordField = element(by.id('63:2;a'));
-
-        // usernameField.clear().then(() => {
-        //     usernameField.sendKeys(config.params.login.username);
-        // });
-
         passwordField.clear().then(() => {
             passwordField.sendKeys(config.params.login.password);
         });
+        
         element(by.css('.loginButton')).click();
 
         expect(browser.getTitle()).toEqual('Login');
