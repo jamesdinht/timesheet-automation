@@ -12,5 +12,5 @@ export let config: Config = {
         }
     },
     getPageTimeout: 5000,
-    specs: ['*.spec.ts'],
+    specs: ['*.spec.js'],
 };
