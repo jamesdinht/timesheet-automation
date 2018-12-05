@@ -1,39 +1,41 @@
 import datetime
+import UserEmailInfo
 
 daysOfTheWeek = [] 
 
 def dow(date):
     days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     dayNumber=date.weekday()
-    print days[dayNumber]
+    return days[dayNumber]
 
 def month(date):
     months = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
     monthNumber = date.month
-    print months[monthNumber - 1]
+    return months[monthNumber - 1]
 
 def constructDaysOfTheWeek():
     dat = datetime.datetime.today()
+    daysOfTheWeek.append(dat)
     for x in range(1,5):
         daysOfTheWeek.append(dat - datetime.timedelta(days = x))
 
+def email_template():
+    hours = 0
+    print ('\nHere are my hours worked for the week of ' + str(firstDay.month) + "/" + str(firstDay.day) + "-" 
+    + str(lastDay.month) + '/' + str(lastDay.day) +":")
+    for x in daysOfTheWeek:
+        dayName = dow(x) 
+        months = month(x)
+        day = str(x.day) 
+        year = str(x.year)
+        hours +=8 # Will eventually add based on user input for hours worked per day
+        print("")
+        print (dayName + ',      ' + months + ' ' + day + ', ' + year + '   ' + str(UserEmailInfo.defaultHours) + ' hours')
+    print ('\nTotal Hours: ' + str(hours) + ' hours')
+    print (UserEmailInfo.signature)
 
 constructDaysOfTheWeek()
+firstDay = daysOfTheWeek[4]
+lastDay = daysOfTheWeek[0]
 
-for x in daysOfTheWeek:
-    dow(x)
-    month(x)
-    print(x.day)
-    print(x.year)
-    print("")
-
-print'Here are my hours worked for the week of 11/26-11/30:'
-print'Monday,       Nov 26, 2018        8 hours' 
-print'Tuesday,      Nov 27, 2018        8 hours' 
-print'Wednesday,    Nov 28, 2018        8 hours'
-print'Thursday,     Nov 29, 2018        8 hours'
-print'Friday,       Nov 30, 2018        8 hours'
-
-print'Total Hours: 40 hours'
-
-print'-Steven Santiago'
+email_template()
