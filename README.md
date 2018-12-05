@@ -4,8 +4,6 @@ Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving 
 
 ## Requirements
 
----
-
 - Reasonable Internet connection (The automated tests waits up to 5 seconds for a page to load, before aborting)
   - The timeout time can be changed by setting a different value for `timeoutTime` in `conf.js`
 - [Node.js](https://nodejs.org/en/)
@@ -14,8 +12,6 @@ Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving 
 - [Google Chrome](https://www.google.com/chrome/) (currently, the tests run only on Chrome)
 
 ## To Use
-
----
 
 Clone this repository
 
@@ -33,8 +29,6 @@ Run the script
   - `protractor conf.js`
 
 ## Comments
-
----
 
 ### **Avoid clicking on the UI while it logs you in. Otherwise, you redirect the cursor away from the username and password input fields, causing it the stop inputting values and fail to login.**
 
