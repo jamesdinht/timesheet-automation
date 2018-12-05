@@ -19,17 +19,17 @@ describe('Timesheet Automation', () => {
         passwordField.clear().then(() => {
             passwordField.sendKeys(config.params.login.password);
         });
-        
+
         element(by.css('.loginButton')).click();
 
         expect(browser.getTitle()).toEqual('Login');
 
         // Open current timesheet and fill it out
         const openTimesheetBtn = element(by.css('button[title="Open Current Timesheet"]'));
-        browser.wait(until.presenceOf(openTimesheetBtn), browser.timeoutTime, 'Button taking too long to load').then(() => {
+        browser.wait(until.presenceOf(openTimesheetBtn), config.getPageTimeout, 'Button taking too long to load').then(() => {
             openTimesheetBtn.click();
         });
-        
+
         expect(browser.getTitle()).toEqual('Timesheet');
 
         // Fill in 8 hours for each day
@@ -38,29 +38,31 @@ describe('Timesheet Automation', () => {
         const wednesdayHoursField = element(by.id('90:230;a'));
         const thursdayHoursField = element(by.id('102:230;a'));
         const fridayHoursField = element(by.id('114:230;a'));
-        browser.wait(until.presenceOf(mondayHoursField), browser.timeoutTime, 'Field taking too long to load.');
+        browser.wait(until.presenceOf(mondayHoursField), config.getPageTimeout, 'Field taking too long to load.')
+            .then(() => {
+                mondayHoursField.clear().then(() => {
+                    mondayHoursField.sendKeys('8.00');
+                });
+            });
 
-        mondayHoursField.clear().then(() =>  {
-            mondayHoursField.sendKeys('8.00');
-        });
-        tuesdayHoursField.clear().then(() =>  {
+        tuesdayHoursField.clear().then(() => {
             tuesdayHoursField.sendKeys('8.00');
         });
-        wednesdayHoursField.clear().then(() =>  {
+        wednesdayHoursField.clear().then(() => {
             wednesdayHoursField.sendKeys('8.00');
         });
-        thursdayHoursField.clear().then(() =>  {
+        thursdayHoursField.clear().then(() => {
             thursdayHoursField.sendKeys('8.00');
         });
-        fridayHoursField.clear().then(() =>  {
+        fridayHoursField.clear().then(() => {
             fridayHoursField.sendKeys('8.00');
         });
 
         const saveButton = element(by.buttonText('Save'));
-        browser.wait(until.presenceOf(saveButton), browser.timeoutTime, 'Button taking too long to load.')
+        browser.wait(until.presenceOf(saveButton), config.getPageTimeout, 'Button taking too long to load.')
             .then(() => {
                 saveButton.click();
-        });
+            });
 
         const timesheetHours = element.all(by.css('.cTimesheetTotalHour')).last();
         expect(timesheetHours.getText()).toEqual('40.00');

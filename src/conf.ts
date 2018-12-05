@@ -11,6 +11,9 @@ export let config: Config = {
             password: 'ENTER PASSWORD HERE'
         }
     },
-    getPageTimeout: 5000,
+    getPageTimeout: 15000,
     specs: ['*.spec.js'],
+    jasmineNodeOpts: {
+        defaultTimeoutInterval: 30000
+    },
 };
