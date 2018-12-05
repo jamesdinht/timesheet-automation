@@ -11,7 +11,10 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run check"
+    "posttest": "npm run check",
+    "build": "gulp build",
+    "watch": "gulp watch",
+    "timesheet": "gulp timesheet"
   },
   "repository": {
     "type": "git",
@@ -26,10 +29,15 @@
   "dependencies": {
     "@types/jasmine": "^3.3.1",
     "@types/jasminewd2": "^2.0.6",
+    "gulp-typescript": "^5.0.0",
     "protractor": "^5.4.1"
   },
   "devDependencies": {
     "gts": "^0.9.0",
+    "gulp": "^3.9.1",
+    "gulp-protractor": "^4.1.1",
+    "gulp-util": "^3.0.8",
+    "run-sequence": "^2.2.1",
     "tslint": "^5.11.0",
     "typescript": "~3.1.0"
   }

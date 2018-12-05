@@ -1,5 +1,4 @@
 import { browser, element, by } from 'protractor';
-import { protractor } from 'protractor/built/ptor';
 import { config } from './conf';
 
 describe('Timesheet Automation', () => {
@@ -10,7 +9,7 @@ describe('Timesheet Automation', () => {
 
         // Get username and password fields
         const usernameField = element(by.id('51:2;a'));
-        browser.wait(until.presenceOf(usernameField), browser.getPageTimeout, 'Username field is taking too long to load').then(() => {
+        browser.wait(until.presenceOf(usernameField), config.getPageTimeout, 'Username field is taking too long to load').then(() => {
             usernameField.clear().then(() => {
                 usernameField.sendKeys(config.params.login.username);
             });
