@@ -1,14 +1,16 @@
 # Timesheet Automation
 
+[![Build Status](https://travis-ci.org/jamesdinht/timesheet-automation.svg?branch=master)](https://travis-ci.org/jamesdinht/timesheet-automation)
+
 Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving you a 40 hour work week.
 
 ## Requirements
 
-- Reasonable Internet connection (The automated tests waits up to 5 seconds for a page to load, before aborting)
-  - The timeout time can be changed by setting a different value for `timeoutTime` in `conf.js`
-- [Node.js](https://nodejs.org/en/)
-- [Protractor](http://www.protractortest.org/#/)
-- [Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) (for running Selenium)
+- Reasonable Internet connection
+  - The timeout time can be changed by setting a different value for `getPageTimeout` and `defaultDefaultTimeoutInterval` in `conf.ts`
+- [Node.js](https://nodejs.org/en/) - 8.12.0+
+- [Protractor](http://www.protractortest.org/#/) - 5.4.1+
+- [Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) (for running Selenium) - 1.8.0_191+
 - [Google Chrome](https://www.google.com/chrome/) (currently, the tests run only on Chrome)
 
 ## To Use
@@ -23,10 +25,13 @@ Run the script
 
 - Navigate to the directory
   - `cd timesheet-automation`
+- Install packages
+  - `yarn`
 - Run the script (don't forget to set your username and password, use single quotes if your password contains special characters)
   - `protractor conf.js --params.login.username=test@example.com --params.login.password='password'`
 - Alternatively, change the `params.username` and `params.password` in `conf.js` to use your email and password and run:
-  - `protractor conf.js`
+  - `protractor conf.js` or
+  - `yarn timesheet`
 
 ## Comments
 
@@ -50,6 +55,7 @@ If there are no errors, it worked. The window will close after the tests finish.
 - Attach file to the timesheet
 - Send email
 - Fill out timesheet on days other than Friday
+- Save credentials in a separate file that can be read from `conf.ts` or `conf.js`
 
 ## Contributing
 
