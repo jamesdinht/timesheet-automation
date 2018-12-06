@@ -10,6 +10,7 @@ Automate filling out your Revature timesheet with 8 hours Monday-Friday, giving 
   - The timeout time can be changed by setting a different value for `getPageTimeout` and `defaultDefaultTimeoutInterval` in `conf.ts`
 - [Node.js](https://nodejs.org/en/) - 8.12.0+
 - [Protractor](http://www.protractortest.org/#/) - 5.4.1+
+- [Yarn](https://yarnpkg.com/en/) - 1.3.2+
 - [Java](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html) (for running Selenium) - 1.8.0_191+
 - [Google Chrome](https://www.google.com/chrome/) (currently, the tests run only on Chrome)
 
