@@ -23,7 +23,7 @@ def email_template():
     hours = 0
     print ('\nHere are my hours worked for the week of ' + str(firstDay.month) + "/" + str(firstDay.day) + "-" 
     + str(lastDay.month) + '/' + str(lastDay.day) +":")
-    for x in daysOfTheWeek:
+    for x in reversed(daysOfTheWeek):
         dayName = dow(x) 
         months = month(x)
         day = str(x.day)+ "," 
