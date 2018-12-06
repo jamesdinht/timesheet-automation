@@ -14,7 +14,8 @@
     "posttest": "npm run check",
     "build": "gulp build",
     "watch": "gulp watch",
-    "timesheet": "gulp default"
+    "timesheet": "gulp default",
+    "lint": "gulp lint:ts"
   },
   "repository": {
     "type": "git",

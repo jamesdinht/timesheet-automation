@@ -33,7 +33,7 @@ gulp.task("lint:ts", function() {
     var program = tslint.Linter.createProgram("./tsconfig.json")
     return gulp.src("src/*.ts")
         .pipe(gulpTslint({ program }))
-        .pipe(gulpTslint.report())
+        .pipe(gulpTslint.report());
 });
 
 gulp.task("default", function() {
