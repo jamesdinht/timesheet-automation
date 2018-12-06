@@ -4,7 +4,7 @@ import UserEmailInfo
 daysOfTheWeek = [] 
 
 def dow(date):
-    days=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    days=["Monday,","Tuesday,","Wednesday,","Thursday,","Friday,","Saturday,","Sunday,"]
     dayNumber=date.weekday()
     return days[dayNumber]
 
@@ -26,16 +26,20 @@ def email_template():
     for x in daysOfTheWeek:
         dayName = dow(x) 
         months = month(x)
-        day = str(x.day) 
+        day = str(x.day)+ "," 
         year = str(x.year)
         hours +=8 # Will eventually add based on user input for hours worked per day
         print("")
-        print (dayName + ',      ' + months + ' ' + day + ', ' + year + '   ' + str(UserEmailInfo.defaultHours) + ' hours')
+        output = '{:15}{:5}{:3}{:10}{:3}{}'.format(dayName,months,day,year,str(UserEmailInfo.defaultHours),"hours")
+        print(output)
     print ('\nTotal Hours: ' + str(hours) + ' hours')
     print (UserEmailInfo.signature)
+   
 
 constructDaysOfTheWeek()
 firstDay = daysOfTheWeek[4]
 lastDay = daysOfTheWeek[0]
 
 email_template()
+
+
