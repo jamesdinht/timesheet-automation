@@ -6,6 +6,7 @@ describe('Timesheet Automation', () => {
         browser.waitForAngularEnabled(false);
         browser.get('https://rev2.force.com/revature/s/login/?startURL=%2Frevature%2Fs%2F&ec=302');
         const until = browser.ExpectedConditions;
+        var random;
 
         // Get username and password fields
         const usernameField = element(by.id('51:2;a'));
