@@ -11,9 +11,10 @@ export let config: Config = {
             password: 'ENTER PASSWORD HERE'
         }
     },
-    getPageTimeout: 15000,
+    getPageTimeout: 30000,
     specs: ['*.spec.js'],
+    uploadFile: '../../example.png',
     jasmineNodeOpts: {
-        defaultTimeoutInterval: 30000
+        defaultTimeoutInterval: 60000
     },
 };
