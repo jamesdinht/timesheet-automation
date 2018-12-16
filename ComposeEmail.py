@@ -1,6 +1,7 @@
 import datetime
 import smtplib
 import UserEmailInfo
+import email.message
 
 daysOfTheWeek = [] 
 
@@ -22,7 +23,8 @@ def constructDaysOfTheWeek():
 
 def email_template():
     hours = 0
-    email = ('\nHere are my hours worked for the week of ' + str(firstDay.month) + "/" + str(firstDay.day) + "-" 
+    
+    email = ('<pre> \nHere are my hours worked for the week of ' + str(firstDay.month) + "/" + str(firstDay.day) + "-" 
     + str(lastDay.month) + '/' + str(lastDay.day) +":\n")
     print ('\nHere are my hours worked for the week of ' + str(firstDay.month) + "/" + str(firstDay.day) + "-" 
     + str(lastDay.month) + '/' + str(lastDay.day) +":")
@@ -42,6 +44,7 @@ def email_template():
     email += ('\nTotal Hours: ' + str(hours) + ' hours\n')
     print (UserEmailInfo.signature)
     email += (UserEmailInfo.signature)
+    email = email + '</pre>'
     return email
    
 
@@ -52,26 +55,35 @@ lastDay = daysOfTheWeek[0]
 
 
 mail = email_template()
-print("\nHere is the line split\n")
-print (mail)
-
-test_email = """From: %s
-To: %s
-Subject: %s
-
-%s
-""" %(UserEmailInfo.user_email,', '.join(UserEmailInfo.to),UserEmailInfo.subject,mail)
+ 
+email_content = """
+<html>
+<body>
+""" + mail + """
+</body>
+</html>
+ 
+ 
+"""
+ 
+msg = email.message.Message()
+msg['Subject'] = UserEmailInfo.subject
+ 
+ 
+msg['From'] = UserEmailInfo.user_email
+msg['To'] = UserEmailInfo.to[0]
+msg.add_header('Content-Type', 'text/html')
+msg.set_payload(email_content)
 
 try:
-    server = smtplib.SMTP('smtp.gmail.com',587)
-    server.ehlo() #identify to the SMTP server
-    server.starttls()#begin secure connection
-    server.login(UserEmailInfo.user_email,UserEmailInfo.user_pass)
-    server.sendmail(UserEmailInfo.user_email,UserEmailInfo.to,test_email)
-    server.close()
-
-    print('Email Successfully Sent?')
+    s = smtplib.SMTP(UserEmailInfo.yahoo_server,587)
+    s.starttls()
+    #Login Credentials for sending the mail
+    s.login(msg['From'], UserEmailInfo.user_pass)
+    s.sendmail(msg['From'], [msg['To']], msg.as_string())
+    s.close()
+    print('Email Succesfully sent!')
 except:
-    print("Something went wrong")
+    print('Something went wrong.')
     
 
